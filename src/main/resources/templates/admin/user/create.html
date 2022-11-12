@@ -10,7 +10,7 @@
 
     <div th:replace="/fragments/header :: header"></div>
 
-    <div th:replace="/fragments/left-sidebar :: left-sidebar"></div>
+    <div th:replace="/fragments/left-sidebar-admin :: left-sidebar"></div>
 
     <div class="dashboard-wrapper">
 
@@ -32,18 +32,18 @@
                                 <div class="panel-body">
 
                                     <!-- ------------------------FORM START----------------------------- -->
-                                    <form th:action="@{''}" method="post" th:object="${''}">
+                                    <form th:action="@{/user/admin/create}" method="post" th:object="${newAdmin}">
                                         <div class="row">
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="form-group">
                                                     <label for="name" class="col-form-label">Name</label>
-                                                    <input id="name" type="text" placeholder="name" th:field="*{''}" class="form-control">
-                                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('')}">
-                                                        <ul>
-                                                            <li th:each="err : ${#fields.errors('')}"
-                                                                th:text="${err}"></li>
-                                                        </ul>
-                                                    </div>
+                                                    <input id="name" type="text" placeholder="name" th:field="*{name}" class="form-control">
+<!--                                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('')}">-->
+<!--                                                        <ul>-->
+<!--                                                            <li th:each="err : ${#fields.errors('')}"-->
+<!--                                                                th:text="${err}"></li>-->
+<!--                                                        </ul>-->
+<!--                                                    </div>-->
                                                 </div>
                                             </div>
                                         </div>
