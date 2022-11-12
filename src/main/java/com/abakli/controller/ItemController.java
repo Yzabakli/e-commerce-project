@@ -2,6 +2,7 @@ package com.abakli.controller;
 
 import com.abakli.dto.StockItemDTO;
 import com.abakli.service.LineItemService;
+import com.abakli.service.OrderService;
 import com.abakli.service.StockItemService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,10 +14,12 @@ public class ItemController {
 
     private final StockItemService stockItemService;
     private final LineItemService lineItemService;
+    private final OrderService orderService;
 
-    public ItemController(StockItemService stockItemService, LineItemService lineItemService) {
+    public ItemController(StockItemService stockItemService, LineItemService lineItemService, OrderService orderService) {
         this.stockItemService = stockItemService;
         this.lineItemService = lineItemService;
+        this.orderService = orderService;
     }
 
     @GetMapping("/create")
@@ -70,10 +73,28 @@ public class ItemController {
     }
 
     @GetMapping("/add/{itemId}")
-    public String addItem(@PathVariable String itemId, Model model) {
+    public String addItem(@PathVariable("itemId") Long itemId) {
 
-//        lineItemService.existBy
+        lineItemService.findByOrder_IdAndStockItem_Id(orderService.findByUserId(4L).getId(), itemId); // todo: hardcoded
 
         return "redirect:/item/show";
+    }
+
+    @GetMapping("/order")
+    public String findItems(Model model) {
+
+        model.addAttribute("lineItems", lineItemService.readAllById(4L)); // todo: hardcoded
+        model.addAttribute("stockService", stockItemService);
+        model.addAttribute("orderId", orderService.findByUserId(4L).getId()); // todo: hardcoded
+
+        return "customer/item/list-line-items";
+    }
+
+    @GetMapping("/remove/{itemId}")
+    public String removeItem(@PathVariable("itemId") Long itemId) {
+
+        lineItemService.removeById(itemId);
+
+        return "redirect:/item/order";
     }
 }

@@ -1,8 +1,8 @@
 package com.abakli.dto;
 
-import lombok.*;
-
-import java.io.Serializable;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,7 +17,4 @@ public class UserDTO {
     private String zipCode;
     private String phoneNumber;
 
-    public UserDTO(String name) {
-        this.name = name;
-    }
 }

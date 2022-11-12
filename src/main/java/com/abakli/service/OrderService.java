@@ -1,8 +1,14 @@
 package com.abakli.service;
 
-import com.abakli.entity.Order;
+import com.abakli.dto.OrderDTO;
 
 public interface OrderService {
 
-    Order findByUserId(Long id);
+    OrderDTO findByUserId(Long id);
+
+    OrderDTO findById(Long orderId);
+
+    void payOrder(Long orderId);
+
+    void update(OrderDTO dto);
 }

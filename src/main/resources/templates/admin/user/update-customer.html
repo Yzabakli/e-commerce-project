@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 
-<head th:replace="/fragments/head :: head"></head>
+<head th:replace="/fragments/head :: head"><title>Update Customer</title></head>
 
 <body>
 
@@ -32,14 +32,14 @@
                                 <div class="panel-body">
 
                                     <!-- ------------------------FORM START----------------------------- -->
-                                    <form th:action="@{/user/update/__${editCustomer.id}__}" method="post"
+                                    <form method="post" th:action="@{/user/update/__${editCustomer.id}__}"
                                           th:object="${editCustomer}">
                                         <div class="row">
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="form-group">
-                                                    <label for="name" class="col-form-label">Name</label>
-                                                    <input id="name" type="text" placeholder="name" th:field="*{name}"
-                                                           class="form-control">
+                                                    <label class="col-form-label" for="name">Name</label>
+                                                    <input class="form-control" id="name" placeholder="name" th:field="*{name}"
+                                                           type="text">
                                                     <!--                                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('')}">-->
                                                     <!--                                                        <ul>-->
                                                     <!--                                                            <li th:each="err : ${#fields.errors('')}"-->
@@ -51,10 +51,10 @@
 
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="form-group">
-                                                    <label for="street" class="col-form-label">Street</label>
-                                                    <input id="street" type="text" placeholder="street"
+                                                    <label class="col-form-label" for="street">Street</label>
+                                                    <input class="form-control" id="street" placeholder="street"
                                                            th:field="*{street}"
-                                                           class="form-control">
+                                                           type="text">
                                                     <!--                                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('')}">-->
                                                     <!--                                                        <ul>-->
                                                     <!--                                                            <li th:each="err : ${#fields.errors('')}"-->
@@ -68,9 +68,9 @@
                                         <div class="row">
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="form-group">
-                                                    <label for="city" class="col-form-label">City</label>
-                                                    <input id="city" type="text" placeholder="city" th:field="*{city}"
-                                                           class="form-control">
+                                                    <label class="col-form-label" for="city">City</label>
+                                                    <input class="form-control" id="city" placeholder="city" th:field="*{city}"
+                                                           type="text">
                                                     <!--                                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('')}">-->
                                                     <!--                                                        <ul>-->
                                                     <!--                                                            <li th:each="err : ${#fields.errors('')}"-->
@@ -82,10 +82,10 @@
 
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="form-group">
-                                                    <label for="state" class="col-form-label">State</label>
-                                                    <input id="state" type="text" placeholder="state"
+                                                    <label class="col-form-label" for="state">State</label>
+                                                    <input class="form-control" id="state" placeholder="state"
                                                            th:field="*{state}"
-                                                           class="form-control">
+                                                           type="text">
                                                     <!--                                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('')}">-->
                                                     <!--                                                        <ul>-->
                                                     <!--                                                            <li th:each="err : ${#fields.errors('')}"-->
@@ -98,10 +98,10 @@
                                         <div class="row">
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="form-group">
-                                                    <label for="zip" class="col-form-label">Zip Code</label>
-                                                    <input id="zip" type="text" placeholder="zip code"
+                                                    <label class="col-form-label" for="zip">Zip Code</label>
+                                                    <input class="form-control" id="zip" placeholder="zip code"
                                                            th:field="*{zipCode}"
-                                                           class="form-control">
+                                                           type="text">
                                                     <!--                                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('')}">-->
                                                     <!--                                                        <ul>-->
                                                     <!--                                                            <li th:each="err : ${#fields.errors('')}"-->
@@ -114,9 +114,9 @@
 
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="form-group">
-                                                    <label for="phonenumber" class="col-form-label">Phone Number</label>
-                                                    <input id="phonenumber" type="tel" placeholder="phone number"
-                                                           th:field="*{phoneNumber}" class="form-control">
+                                                    <label class="col-form-label" for="phonenumber">Phone Number</label>
+                                                    <input class="form-control" id="phonenumber" placeholder="phone number"
+                                                           th:field="*{phoneNumber}" type="tel">
                                                     <!--                                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('')}">-->
                                                     <!--                                                        <ul>-->
                                                     <!--                                                            <li th:each="err : ${#fields.errors('')}"-->
@@ -130,7 +130,7 @@
                                         <div class="row">
                                             <div class="col-sm-6 col-md-6 col-lg-12">
                                                 <div class="float-right">
-                                                    <button type="submit" class="btn btn-success">Save</button>
+                                                    <button class="btn btn-success" type="submit">Save</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -184,11 +184,11 @@
                                                 <td th:text="${customer.phoneNumber}"></td>
                                                 <td>
                                                     <a th:href="@{/user/update/__${customer.id}__}">
-                                                        <button type="button" class="btn btn-warning rounded-0">Update
+                                                        <button class="btn btn-warning rounded-0" type="button">Update
                                                         </button>
                                                     </a>
                                                     <a th:href="@{/user/delete/__${customer.id}__}">
-                                                        <button type="button" class="btn btn-danger rounded-0">Delete
+                                                        <button class="btn btn-danger rounded-0" type="button">Delete
                                                         </button>
                                                     </a>
                                                 </td>

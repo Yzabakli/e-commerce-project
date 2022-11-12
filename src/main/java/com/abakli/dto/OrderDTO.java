@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import java.io.Serializable;
 import java.time.LocalDate;
 
 @Data
@@ -14,6 +13,7 @@ import java.time.LocalDate;
 public class OrderDTO {
 
     private Long id;
+    private UserDTO user;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate orderDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -22,4 +22,5 @@ public class OrderDTO {
     private String city;
     private String state;
     private String zipCode;
+    private boolean isPayed;
 }

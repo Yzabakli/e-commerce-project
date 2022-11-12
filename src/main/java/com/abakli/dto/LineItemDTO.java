@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 public class LineItemDTO {
 
     private Long id;
+    private StockItemDTO stockItem;
     private Integer quantity;
     private Integer discount;
 }

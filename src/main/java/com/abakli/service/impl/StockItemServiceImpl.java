@@ -43,9 +43,9 @@ public class StockItemServiceImpl implements StockItemService {
     public void update(StockItemDTO dto) {
 
         Optional<StockItem> stockItem = stockItemRepository.findById(dto.getId());
-        StockItem convertedStockItem  = mapper.convert(dto);
+        StockItem convertedStockItem = mapper.convert(dto);
 
-        if(stockItem.isPresent()){
+        if (stockItem.isPresent()) {
             stockItemRepository.save(convertedStockItem);
         }
     }

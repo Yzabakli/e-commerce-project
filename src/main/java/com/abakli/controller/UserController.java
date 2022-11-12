@@ -49,8 +49,8 @@ public class UserController {
         return "redirect:/user/create";
     }
 
-    @GetMapping("/update/{taskId}")
-    public String updateCustomer(@PathVariable("taskId") Long id, Model model) {
+    @GetMapping("/update/{userId}")
+    public String updateCustomer(@PathVariable("userId") Long id, Model model) {
 
         model.addAttribute("editCustomer", userService.findById(id));
         model.addAttribute("customers", userService.findAllCustomers());
@@ -66,12 +66,28 @@ public class UserController {
         return "redirect:/user/create";
     }
 
-    @GetMapping("/delete/{taskId}")
-    public String deleteCustomer(@PathVariable("taskId") Long id) {
+    @GetMapping("/delete/{userId}")
+    public String deleteCustomer(@PathVariable("userId") Long id) {
 
         userService.delete(id);
 
         return "redirect:/user/create";
+    }
+
+    @GetMapping("/edit-profile/{userId}")
+    public String editProfile(@PathVariable("userId") Long id, Model model) {
+
+        model.addAttribute("editCustomer", userService.findById(id));
+
+        return "customer/edit-profile";
+    }
+
+    @PostMapping("/edit-profile/{id}")
+    public String editProfile(@ModelAttribute("editCustomer") UserDTO editCustomer) {
+
+        userService.update(editCustomer);
+
+        return "redirect:/welcome";
     }
 
 }
