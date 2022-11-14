@@ -12,6 +12,7 @@ public class LineItemDTO {
 
     private Long id;
     private StockItemDTO stockItem;
+    private OrderDTO order;
     private Integer quantity;
     private Integer discount;
 }

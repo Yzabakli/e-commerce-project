@@ -52,7 +52,7 @@
                                                 <td th:text="${order.state}"></td>
                                                 <td th:text="${order.zipCode}"></td>
                                                 <td><a class="btn btn-primary"
-                                                       th:href="@{/order/pay}">Pay</a>
+                                                       th:href="@{/order/pay/__${order.id}__}">Pay</a>
                                                 </td>
                                             </tr>
                                             </tbody>

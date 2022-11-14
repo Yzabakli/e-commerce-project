@@ -42,12 +42,12 @@
                                             </thead>
                                             <tbody>
                                             <tr th:each="lineItem : ${lineItems}">
-                                                <td th:text="${stockService.findById(lineItem.stockItem.id).description}"></td>
+                                                <td th:text="${lineItem.stockItem.description}"></td>
                                                 <td th:text="${lineItem.quantity}"></td>
-                                                <td th:text="${stockService.findById(lineItem.stockItem.id).price.multiply(lineItem.quantity)}"></td>
+                                                <td th:text="${lineItem.stockItem.price.multiply(lineItem.quantity)}"></td>
                                                 <td th:text="${lineItem.discount}"></td>
                                                 <td><a class="btn btn-primary"
-                                                       th:href="@{/order/order-detail/__${orderId}__}">Order Details</a>
+                                                       th:href="@{/order/order-detail/__${lineItem.order.id}__}">Order Details</a>
                                                 </td>
                                                 <td><a class="btn btn-primary"
                                                        th:href="@{/item/remove/__${lineItem.id}__}">Remove</a>

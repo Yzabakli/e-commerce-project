@@ -69,7 +69,7 @@ public class LineItemServiceImpl implements LineItemService {
     @Override
     public void removeById(Long itemId) {
 
-        LineItem item = lineItemRepository.findByIdAndOrder_User_Id(itemId, 4L); // todo: hardcoded
+        LineItem item = lineItemRepository.findByIdAndOrder_User_Id(itemId, 1L); // todo: hardcoded
 
         if (item.getQuantity() == 1) {
 
