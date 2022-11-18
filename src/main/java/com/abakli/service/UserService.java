@@ -5,7 +5,6 @@ import com.abakli.dto.UserDTO;
 import java.util.List;
 
 public interface UserService {
-    boolean isAdmin();
 
     void save(UserDTO dto);
 
@@ -16,4 +15,6 @@ public interface UserService {
     UserDTO update(UserDTO dto);
 
     void delete(Long id);
+
+    UserDTO getCurrentUser();
 }

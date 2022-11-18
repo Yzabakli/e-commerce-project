@@ -8,9 +8,9 @@
     <div class="dashboard-header">
         <nav class="navbar navbar-expand-lg bg-white fixed-top">
             <a class="navbar-brand">
-                <img th:src="@{/images/CydeoLogo_01.png}"
-                     height="45"
-                     alt="JSOFT Admin"/>
+                <img alt="JSOFT Admin"
+                     height="100"
+                     th:src="@{/images/ABAKLI.gif}"/>
             </a>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto navbar-right-top">
@@ -20,26 +20,27 @@
                         </a>
                     </li>
                     <li class="nav-item dropdown nav-user">
-                        <a class="nav-link nav-user-img"
-                           href="#"
-                           id="navbarDropdownMenuLink2"
-                           data-toggle="dropdown"
+                        <a aria-expanded="false"
                            aria-haspopup="true"
-                           aria-expanded="false">
-                            <img th:src="@{/images/user.png}"
-                                 alt=""
-                                 class="user-avatar-md rounded-circle"/>
+                           class="nav-link nav-user-img"
+                           data-toggle="dropdown"
+                           href="#"
+                           id="navbarDropdownMenuLink2">
+                            <img alt=""
+                                 class="user-avatar-md rounded-circle"
+                                 th:src="@{/images/user.png}"/>
                         </a>
 
-                        <div class="dropdown-menu dropdown-menu-right nav-user-dropdown"
-                             aria-labelledby="navbarDropdownMenuLink2">
+                        <div aria-labelledby="navbarDropdownMenuLink2"
+                             class="dropdown-menu dropdown-menu-right nav-user-dropdown">
 
                             <div class="nav-user-info">
                                 <h5 class="mb-0 text-white nav-user-name"></h5>
                                 <span class="status"></span>
                                 <span class="ml-2">Available</span>
                             </div>
-                            <a class="dropdown-item" href="#"><i class="fas fa-power-off mr-2"></i>Logout</a>
+                            <a class="dropdown-item" th:href="@{/logout}"><i
+                                    class="fas fa-power-off mr-2"></i>Logout</a>
                         </div>
                     </li>
                 </ul>

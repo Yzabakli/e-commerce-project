@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head th:replace="/fragments/head :: head"><title>Orders</title></head>
 
@@ -46,11 +46,13 @@
                                                 <td th:text="${lineItem.quantity}"></td>
                                                 <td th:text="${lineItem.stockItem.price.multiply(lineItem.quantity)}"></td>
                                                 <td th:text="${lineItem.discount}"></td>
-                                                <td><a class="btn btn-primary"
-                                                       th:href="@{/order/order-detail/__${lineItem.order.id}__}">Order Details</a>
+                                                <td th:unless="${lineItem.payed}"><a class="btn btn-primary"
+                                                                                     th:href="@{/order/order-detail/__${lineItem.order.id}__}">Order
+                                                    Details</a>
                                                 </td>
-                                                <td><a class="btn btn-primary"
-                                                       th:href="@{/item/remove/__${lineItem.id}__}">Remove</a>
+                                                <td th:if="${lineItem.payed}" th:text="${lineItem.order.id}"></td>
+                                                <td th:unless="${lineItem.payed}"><a class="btn btn-primary"
+                                                                                     th:href="@{/item/remove/__${lineItem.id}__}">Remove</a>
                                                 </td>
                                             </tr>
                                             </tbody>

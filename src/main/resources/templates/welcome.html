@@ -10,9 +10,8 @@
 
     <div th:replace="/fragments/header :: header"></div>
 
-    <div th:if="${isAdmin}"><div th:replace="/fragments/left-sidebar-admin :: left-sidebar"></div></div>
+    <div th:replace="/fragments/left-sidebar :: left-sidebar"></div>
 
-    <div th:unless="${isAdmin}"><div th:replace="/fragments/left-sidebar :: left-sidebar"></div></div>
 
     <div class="dashboard-wrapper">
 

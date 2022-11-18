@@ -21,7 +21,7 @@
                         <div class="col-md-12">
                             <section class="panel">
                                 <header class="panel-heading">
-                                    <h2 class="panel-title">Order Details</h2>
+                                    <h2 class="panel-title">Order History</h2>
                                 </header>
                                 <div class="panel-body">
                                     <div class="table-responsive">
@@ -40,10 +40,11 @@
                                                 <th scope="col">City</th>
                                                 <th scope="col">State</th>
                                                 <th scope="col">Zip Code</th>
+                                                <th scope="col">Action</th>
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr>
+                                            <tr th:each="order : ${orders}">
                                                 <td th:text="${order.id}"></td>
                                                 <td th:text="${order.orderDate}"></td>
                                                 <td th:text="${order.shipDate}"></td>
@@ -52,7 +53,8 @@
                                                 <td th:text="${order.user.state}"></td>
                                                 <td th:text="${order.user.zipCode}"></td>
                                                 <td><a class="btn btn-primary"
-                                                       th:href="@{/order/pay/__${order.id}__}">Pay</a>
+                                                       th:href="@{/order/history/order-detail/__${order.id}__}">Order
+                                                    Details</a>
                                                 </td>
                                             </tr>
                                             </tbody>

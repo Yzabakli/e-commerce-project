@@ -18,9 +18,5 @@ public class OrderDTO {
     private LocalDate orderDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate shipDate;
-    private String street;
-    private String city;
-    private String state;
-    private String zipCode;
     private boolean isPayed;
 }

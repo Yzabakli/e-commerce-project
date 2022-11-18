@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html lang="en"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:th="http://www.thymeleaf.org">
 
 <body>
 
@@ -9,28 +10,52 @@
         <div class="menu-list">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
-                <button class="navbar-toggler"
-                        type="button"
-                        data-toggle="collapse"
-                        data-target="#navbarNav"
-                        aria-controls="navbarNav"
+                <button aria-controls="navbarNav"
                         aria-expanded="false"
-                        aria-label="Toggle navigation">
+                        aria-label="Toggle navigation"
+                        class="navbar-toggler"
+                        data-target="#navbarNav"
+                        data-toggle="collapse"
+                        type="button">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav flex-column">
                         <li class="nav-divider"></li>
-                        <li class="nav-item">
-                            <a class="nav-link"
-                               href="#"
-                               data-toggle="collapse"
+                        <li class="nav-item" sec:authorize="hasAuthority('Admin')">
+                            <a aria-controls="submenu-1"
                                aria-expanded="false"
+                               class="nav-link"
+                               data-target="#submenu-1"
+                               data-toggle="collapse"
+                               href="#">
+                                <i class="fa fa-fw fa-user-circle"></i>Admin
+                                <span class="badge badge-success">6</span>
+                            </a>
+                            <div class="collapse submenu" id="submenu-1" style="">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link" th:href="@{/user/create}">Customer Create</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" th:href="@{/item/create}">Item Create</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" th:href="@{/user/admin/create}">Admin Create</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="nav-item" sec:authorize="hasAuthority('Customer')">
+                            <a aria-controls="submenu-2"
+                               aria-expanded="false"
+                               class="nav-link"
                                data-target="#submenu-2"
-                               aria-controls="submenu-2">
+                               data-toggle="collapse"
+                               href="#">
                                 <i class="fas fa-chalkboard-teacher"></i>Shop
                             </a>
-                            <div id="submenu-2" class="collapse submenu" style="">
+                            <div class="collapse submenu" id="submenu-2" style="">
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
                                         <a class="nav-link" th:href="@{/item/show}">Browse
@@ -43,19 +68,23 @@
                                 </ul>
                             </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link"
-                               href="#"
-                               data-toggle="collapse"
+                        <li class="nav-item" sec:authorize="hasAuthority('Customer')">
+                            <a aria-controls="submenu-3"
                                aria-expanded="false"
+                               class="nav-link"
                                data-target="#submenu-3"
-                               aria-controls="submenu-3">
+                               data-toggle="collapse"
+                               href="#">
                                 <i class="fas fa-user-graduate"></i>User
                             </a>
-                            <div id="submenu-3" class="collapse submenu" style="">
+                            <div class="collapse submenu" id="submenu-3" style="">
                                 <ul class="nav flex-column">
                                     <li class="nav-item">
-                                        <a class="nav-link" th:href="@{/user/edit-profile/3}">Edit Profile</a> <!-- todo: hardcoded -->
+                                        <a class="nav-link" th:href="@{/user/edit-profile}">Edit Profile</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" th:href="@{/order/history}">Order History
+                                            <span class="badge badge-secondary">New</span></a>
                                     </li>
                                 </ul>
                             </div>

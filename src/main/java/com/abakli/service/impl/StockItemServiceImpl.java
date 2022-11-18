@@ -54,7 +54,7 @@ public class StockItemServiceImpl implements StockItemService {
     public void delete(Long itemId) {
 
         StockItem item = stockItemRepository.findById(itemId).orElseThrow();
-        item.setDeleted(true);
+        item.setIsDeleted(true);
         stockItemRepository.save(item);
     }
 }

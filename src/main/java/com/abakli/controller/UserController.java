@@ -74,10 +74,10 @@ public class UserController {
         return "redirect:/user/create";
     }
 
-    @GetMapping("/edit-profile/{userId}")
-    public String editProfile(@PathVariable("userId") Long id, Model model) {
+    @GetMapping("/edit-profile")
+    public String editProfile(Model model) {
 
-        model.addAttribute("editCustomer", userService.findById(id));
+        model.addAttribute("editCustomer", userService.getCurrentUser());
 
         return "customer/edit-profile";
     }
@@ -87,7 +87,7 @@ public class UserController {
 
         userService.update(editCustomer);
 
-        return "redirect:/welcome";
+        return "redirect:/user/edit-profile";
     }
 
 }

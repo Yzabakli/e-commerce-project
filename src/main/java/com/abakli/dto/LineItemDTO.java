@@ -15,4 +15,5 @@ public class LineItemDTO {
     private OrderDTO order;
     private Integer quantity;
     private Integer discount;
+    private boolean isPayed;
 }

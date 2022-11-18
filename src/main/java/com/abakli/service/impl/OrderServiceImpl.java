@@ -12,37 +12,46 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class OrderServiceImpl implements OrderService {
 
     private final OrderRepository orderRepository;
     private final UserService userService;
+    private final LineItemServiceImpl lineItemService;
     private final UserMapper userMapper;
     private final OrderMapper mapper;
 
-    public OrderServiceImpl(OrderRepository orderRepository, @Lazy UserService userService, UserMapper userMapper, OrderMapper mapper) {
+    public OrderServiceImpl(OrderRepository orderRepository, @Lazy UserService userService, @Lazy LineItemServiceImpl lineItemService, UserMapper userMapper, OrderMapper mapper) {
         this.orderRepository = orderRepository;
         this.userService = userService;
+        this.lineItemService = lineItemService;
         this.userMapper = userMapper;
         this.mapper = mapper;
     }
 
 
     @Override
-    public OrderDTO findByUserId(Long id) {
+    public OrderDTO findByCurrentUser() {
 
-        Optional<Order> order = orderRepository.findByUser_Id(id);
+        Optional<Order> order = orderRepository.findByUser_IdAndIsPayedFalse(userService.getCurrentUser().getId());
 
         if (order.isEmpty()) {
 
-            User user = userMapper.convert(userService.findById(id));
+            User user = userMapper.convert(userService.getCurrentUser());
 
-            order = Optional.of(new Order(user, LocalDate.now(), LocalDate.now()
-                    .plusDays(1), user.getStreet(), user.getCity(), user.getState(), user.getZipCode(), false));
+            order = Optional.of(new Order(user, LocalDate.now(), LocalDate.now().plusDays(1), false));
         }
         return mapper.convertToDTO(orderRepository.save(order.orElseThrow()));
+    }
+
+    @Override
+    public Optional<OrderDTO> findByUserId(Long id) {
+
+        return Optional.of(mapper.convertToDTO(orderRepository.findByUser_Id(id).orElseThrow()));
     }
 
     @Override
@@ -55,8 +64,10 @@ public class OrderServiceImpl implements OrderService {
 
         Order order = orderRepository.findById(orderId).orElseThrow();
 
+        lineItemService.findByOrder_Id(orderId).forEach(dto -> lineItemService.pay(dto.getId()));
+
         order.setPayed(true);
-        order.setDeleted(true);
+
         orderRepository.save(order);
     }
 
@@ -68,5 +79,30 @@ public class OrderServiceImpl implements OrderService {
         convert.setId(dto.getId());
 
         orderRepository.save(convert);
+    }
+
+    @Override
+    public boolean existsByUser_Id(Long id) {
+        return orderRepository.existsByUser_Id(id);
+    }
+
+    @Override
+    public List<OrderDTO> readAllPayed() {
+        return orderRepository.findByUser_IdAndIsPayedTrue(userService.getCurrentUser().getId())
+                .stream()
+                .map(mapper::convertToDTO)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public void delete(Long id) {
+
+        Order order = orderRepository.findById(id).orElseThrow();
+
+        lineItemService.findByOrder_Id(id).forEach(dto -> lineItemService.delete(dto.getId()));
+
+        order.setIsDeleted(true);
+
+        orderRepository.save(order);
     }
 }

@@ -8,17 +8,17 @@
 <div class="splash-container">
     <div class="card ">
         <div class="card-header text-center">
-            <img class="logo-img" th:src="@{/images/CydeoLogo_01.png}" height="45" alt="logo">
+            <img alt="logo" class="logo-img" height="125" th:src="@{/images/ABAKLI.gif}" width="125">
         </div>
         <div class="card-body">
-            <form th:action="@{/welcome}">
+            <form method="post" th:action="@{/login}">
                 <div class="form-group">
-                    <label for="username">Email</label>:
-                    <input type="text" id="username" name="username" class="form-control" placeholder="username"/>
+                    <label for="username">Phone</label>:
+                    <input class="form-control" id="username" name="username" placeholder="username" type="text"/>
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>:
-                    <input type="password" id="password" name="password" class="form-control" placeholder="password"/>
+                    <input class="form-control" id="password" name="password" placeholder="password" type="password"/>
                 </div>
                 <div class="form-group">
                     <label class="custom-control custom-checkbox">
@@ -26,8 +26,8 @@
                             class="custom-control-label">Remember Me</span>
                     </label>
                 </div>
-                <input type="submit" name="login-submit" id="login-submit"
-                       class="form-control btn btn-primary btn-lg btn-block" value="Log In"/>
+                <input class="form-control btn btn-primary btn-lg btn-block" id="login-submit" name="login-submit"
+                       type="submit" value="Log In"/>
             </form>
         </div>
     </div>

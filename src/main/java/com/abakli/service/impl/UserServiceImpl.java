@@ -2,16 +2,19 @@ package com.abakli.service.impl;
 
 import com.abakli.dto.OrderDTO;
 import com.abakli.dto.UserDTO;
+import com.abakli.entity.Role;
 import com.abakli.entity.User;
 import com.abakli.mapper.UserMapper;
 import com.abakli.repository.UserRepository;
 import com.abakli.service.OrderService;
+import com.abakli.service.RoleService;
 import com.abakli.service.UserService;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 @Service
@@ -19,34 +22,38 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final OrderService orderService;
+    private final RoleService roleService;
     private final UserMapper mapper;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository, @Lazy OrderService orderService, UserMapper mapper) {
+    public UserServiceImpl(UserRepository userRepository, @Lazy OrderService orderService, RoleService roleService, UserMapper mapper, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.orderService = orderService;
+        this.roleService = roleService;
         this.mapper = mapper;
-    }
-
-    @Override
-    public boolean isAdmin() {
-
-        try {
-            return userRepository.findById(1L).orElseThrow().getState() == null; // todo: hardcoded
-
-        } catch (NoSuchElementException e) {
-
-            return true;
-        }
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
     public void save(UserDTO dto) {
-        userRepository.save(mapper.convert(dto));
+
+
+        if (dto.getCity() == null) {
+
+            dto.setRole(roleService.findById(1L));
+
+        } else dto.setRole(roleService.findById(2L));
+
+        User user = mapper.convert(dto);
+
+        user.setPassword(passwordEncoder.encode(dto.getPassword()));
+
+        userRepository.save(user);
     }
 
     @Override
     public List<UserDTO> findAllCustomers() {
-        return userRepository.findByStreetNotNull().stream().map(mapper::convertToDTO).collect(Collectors.toList());
+        return userRepository.findByRole_Id(2L).stream().map(mapper::convertToDTO).collect(Collectors.toList());
     }
 
     @Override
@@ -59,23 +66,21 @@ public class UserServiceImpl implements UserService {
 
         User convert = mapper.convert(dto);
 
+        Role role = userRepository.findById(dto.getId()).orElseThrow().getRole();
+
         convert.setId(dto.getId());
 
-        try {
+        convert.setPassword(passwordEncoder.encode(dto.getPassword()));
 
-            OrderDTO orderDTO = orderService.findByUserId(convert.getId());
+        convert.setRole(role);
 
-            orderDTO.setStreet(convert.getStreet());
-            orderDTO.setCity(convert.getCity());
-            orderDTO.setState(convert.getState());
-            orderDTO.setZipCode(convert.getZipCode());
+        if (orderService.existsByUser_Id(convert.getId())) {
+
+            OrderDTO orderDTO = orderService.findByCurrentUser();
+
             orderDTO.setShipDate(orderDTO.getShipDate().plusDays(1));
 
             orderService.update(orderDTO);
-
-        } catch (NoSuchElementException ignored) {
-
-
         }
 
         return mapper.convertToDTO(userRepository.save(convert));
@@ -85,7 +90,25 @@ public class UserServiceImpl implements UserService {
     public void delete(Long id) {
 
         User user = userRepository.findById(id).orElseThrow();
-        user.setDeleted(true);
+
+
+        if (orderService.existsByUser_Id(id)) {
+
+            OrderDTO order = orderService.findByUserId(id).orElseThrow();
+
+            orderService.delete(order.getId());
+
+            orderService.update(order);
+        }
+
+        user.setIsDeleted(true);
         userRepository.save(user);
+    }
+
+    @Override
+    public UserDTO getCurrentUser() {
+        return mapper.convertToDTO(userRepository.findByPhoneNumber(SecurityContextHolder.getContext()
+                .getAuthentication()
+                .getName()).orElseThrow());
     }
 }

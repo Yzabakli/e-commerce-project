@@ -75,7 +75,7 @@ public class ItemController {
     @GetMapping("/add/{itemId}")
     public String addItem(@PathVariable("itemId") Long itemId) {
 
-        lineItemService.findByOrder_IdAndStockItem_Id(orderService.findByUserId(1L).getId(), itemId); // todo: hardcoded
+        lineItemService.findByOrder_IdAndStockItem_Id(orderService.findByCurrentUser().getId(), itemId);
 
         return "redirect:/item/show";
     }
@@ -83,9 +83,7 @@ public class ItemController {
     @GetMapping("/order")
     public String findItems(Model model) {
 
-        model.addAttribute("lineItems", lineItemService.readAllById(1L)); // todo: hardcoded
-        model.addAttribute("stockService", stockItemService);
-        model.addAttribute("orderId", orderService.findByUserId(1L).getId()); // todo: hardcoded
+        model.addAttribute("lineItems", lineItemService.readAllByCurrentUser());
 
         return "customer/item/list-line-items";
     }

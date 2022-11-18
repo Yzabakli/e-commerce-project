@@ -10,11 +10,14 @@ import lombok.NoArgsConstructor;
 public class UserDTO {
 
     private Long id;
-    private String name;
+    private String firstName;
+    private String lastName;
     private String street;
     private String city;
     private String state;
     private String zipCode;
     private String phoneNumber;
+    private String password;
 
+    private RoleDTO role;
 }

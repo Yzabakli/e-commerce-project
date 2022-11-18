@@ -25,4 +25,5 @@ public class LineItem extends BaseEntity {
 
     private Integer quantity;
     private Integer discount;
+    private boolean isPayed;
 }

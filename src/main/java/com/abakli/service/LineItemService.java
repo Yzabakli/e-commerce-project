@@ -8,7 +8,11 @@ public interface LineItemService {
 
     void findByOrder_IdAndStockItem_Id(Long orderId, Long itemId);
 
-    List<LineItemDTO> readAllById(Long id);
+    List<LineItemDTO> readAllByCurrentUser();
 
     void removeById(Long itemId);
+
+    void delete(Long id);
+
+    List<LineItemDTO> findByOrder_Id(Long id);
 }
