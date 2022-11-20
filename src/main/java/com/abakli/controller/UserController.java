@@ -71,6 +71,11 @@ public class UserController {
 
         userService.delete(id);
 
+        if (userService.getCurrentUser().getPhoneNumber().equals(userService.findById(id).getPhoneNumber())) {
+
+            return "redirect:/logout";
+        }
+
         return "redirect:/user/create";
     }
 
