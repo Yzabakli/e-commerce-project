@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="/fragments/head :: head"></head>
+<head th:replace="/fragments/head :: head"><title>Item Create</title></head>
 
 <body>
 
@@ -32,34 +32,35 @@
                                 <div class="panel-body">
 
                                     <!-- ------------------------FORM START----------------------------- -->
-                                    <form th:action="@{''}" method="post" th:object="${''}">
+                                    <form method="post" th:action="@{/item/create}" th:object="${item}">
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <label for="item" class="col-form-label">Item Name</label>
-                                                    <input id="item" th:field="*{''}" type="text" class="form-control"
-                                                           placeholder="item">
-                                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('')}">
-                                                        <ul>
-                                                            <li th:each="err : ${#fields.errors('')}"
-                                                                th:text="${err}"></li>
-                                                        </ul>
-                                                    </div>
+                                                    <label class="col-form-label" for="item">Item Description</label>
+                                                    <input class="form-control" id="item" placeholder="description"
+                                                           th:field="*{description}"
+                                                           type="text">
+                                                    <!--                                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('')}">-->
+                                                    <!--                                                        <ul>-->
+                                                    <!--                                                            <li th:each="err : ${#fields.errors('')}"-->
+                                                    <!--                                                                th:text="${err}"></li>-->
+                                                    <!--                                                        </ul>-->
+                                                    <!--                                                    </div>-->
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="col">
                                                 <div class="form-group">
-                                                    <label for="price" class="col-form-label">Price</label>
-                                                    <input id="price" th:field="*{''}" type="number"
-                                                           class="form-control" placeholder="price">
-                                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('')}">
-                                                        <ul>
-                                                            <li th:each="err : ${#fields.errors('')}"
-                                                                th:text="${err}"></li>
-                                                        </ul>
-                                                    </div>
+                                                    <label class="col-form-label" for="price">Price</label>
+                                                    <input class="form-control" id="price" placeholder="price"
+                                                           th:field="*{price}" type="number">
+                                                    <!--                                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('')}">-->
+                                                    <!--                                                        <ul>-->
+                                                    <!--                                                            <li th:each="err : ${#fields.errors('')}"-->
+                                                    <!--                                                                th:text="${err}"></li>-->
+                                                    <!--                                                        </ul>-->
+                                                    <!--                                                    </div>-->
                                                 </div>
                                             </div>
                                         </div>
@@ -105,16 +106,16 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr th:each="'' : ${''}">
-                                                <td th:text="${''}"></td>
-                                                <td th:text="${''}"></td>
+                                            <tr th:each="eachItem : ${items}">
+                                                <td th:text="${eachItem.description}"></td>
+                                                <td th:text="${eachItem.price}"></td>
                                                 <td>
-                                                    <a th:href="@{''}">
-                                                        <button type="button" class="btn btn-warning rounded-0">Update
+                                                    <a th:href="@{/item/update/__${eachItem.id}__}">
+                                                        <button class="btn btn-warning rounded-0" type="button">Update
                                                         </button>
                                                     </a>
-                                                    <a th:href="@{''}">
-                                                        <button type="button" class="btn btn-danger rounded-0">Delete
+                                                    <a th:href="@{/item/delete/__${eachItem.id}__}">
+                                                        <button class="btn btn-danger rounded-0" type="button">Delete
                                                         </button>
                                                     </a>
                                                 </td>

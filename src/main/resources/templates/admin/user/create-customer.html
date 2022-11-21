@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="/fragments/head :: head"></head>
+<head th:replace="/fragments/head :: head"><title>Create Customer</title></head>
 
 <body>
 
@@ -32,33 +32,34 @@
                                 <div class="panel-body">
 
                                     <!-- ------------------------FORM START----------------------------- -->
-                                    <form th:action="@{''}" method="post" th:object="${''}">
+                                    <form method="post" th:action="@{/user/create}" th:object="${newCustomer}">
                                         <div class="row">
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="form-group">
-                                                    <label for="name" class="col-form-label">Name</label>
-                                                    <input id="name" type="text" placeholder="name" th:field="*{''}"
-                                                           class="form-control">
-                                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('')}">
-                                                        <ul>
-                                                            <li th:each="err : ${#fields.errors('')}"
-                                                                th:text="${err}"></li>
-                                                        </ul>
-                                                    </div>
+                                                    <label class="col-form-label" for="firstname">First Name</label>
+                                                    <input class="form-control" id="firstname" placeholder="first name"
+                                                           th:field="*{firstName}"
+                                                           type="text">
+                                                    <!--                                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('')}">-->
+                                                    <!--                                                        <ul>-->
+                                                    <!--                                                            <li th:each="err : ${#fields.errors('')}"-->
+                                                    <!--                                                                th:text="${err}"></li>-->
+                                                    <!--                                                        </ul>-->
+                                                    <!--                                                    </div>-->
                                                 </div>
                                             </div>
-
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="form-group">
-                                                    <label for="street" class="col-form-label">Street</label>
-                                                    <input id="street" type="text" placeholder="street" th:field="*{''}"
-                                                           class="form-control">
-                                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('')}">
-                                                        <ul>
-                                                            <li th:each="err : ${#fields.errors('')}"
-                                                                th:text="${err}"></li>
-                                                        </ul>
-                                                    </div>
+                                                    <label class="col-form-label" for="lastname">Last Name</label>
+                                                    <input class="form-control" id="lastname" placeholder="last name"
+                                                           th:field="*{lastName}"
+                                                           type="text">
+                                                    <!--                                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('')}">-->
+                                                    <!--                                                        <ul>-->
+                                                    <!--                                                            <li th:each="err : ${#fields.errors('')}"-->
+                                                    <!--                                                                th:text="${err}"></li>-->
+                                                    <!--                                                        </ul>-->
+                                                    <!--                                                    </div>-->
                                                 </div>
                                             </div>
                                         </div>
@@ -66,29 +67,30 @@
                                         <div class="row">
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="form-group">
-                                                    <label for="city" class="col-form-label">City</label>
-                                                    <input id="city" type="text" placeholder="city" th:field="*{''}"
-                                                           class="form-control">
-                                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('')}">
-                                                        <ul>
-                                                            <li th:each="err : ${#fields.errors('')}"
-                                                                th:text="${err}"></li>
-                                                        </ul>
-                                                    </div>
+                                                    <label class="col-form-label" for="phonenumber">Phone Number</label>
+                                                    <input class="form-control" id="phonenumber"
+                                                           placeholder="phone number"
+                                                           th:field="*{phoneNumber}" type="tel">
+                                                    <!--                                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('')}">-->
+                                                    <!--                                                        <ul>-->
+                                                    <!--                                                            <li th:each="err : ${#fields.errors('')}"-->
+                                                    <!--                                                                th:text="${err}"></li>-->
+                                                    <!--                                                        </ul>-->
+                                                    <!--                                                    </div>-->
                                                 </div>
                                             </div>
-
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="form-group">
-                                                    <label for="zip" class="col-form-label">Zip Code</label>
-                                                    <input id="zip" type="text" placeholder="zip code" th:field="*{''}"
-                                                           class="form-control">
-                                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('')}">
-                                                        <ul>
-                                                            <li th:each="err : ${#fields.errors('')}"
-                                                                th:text="${err}"></li>
-                                                        </ul>
-                                                    </div>
+                                                    <label class="col-form-label" for="password">Password</label>
+                                                    <input class="form-control" id="password" placeholder="password"
+                                                           th:field="*{password}"
+                                                           type="password">
+                                                    <!--                                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('')}">-->
+                                                    <!--                                                        <ul>-->
+                                                    <!--                                                            <li th:each="err : ${#fields.errors('')}"-->
+                                                    <!--                                                                th:text="${err}"></li>-->
+                                                    <!--                                                        </ul>-->
+                                                    <!--                                                    </div>-->
                                                 </div>
                                             </div>
                                         </div>
@@ -96,15 +98,61 @@
                                         <div class="row">
                                             <div class="col-sm-6 col-md-6">
                                                 <div class="form-group">
-                                                    <label for="phonenumber" class="col-form-label">Phone Number</label>
-                                                    <input id="phonenumber" type="tel" placeholder="phone number"
-                                                           th:field="*{''}" class="form-control">
-                                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('')}">
-                                                        <ul>
-                                                            <li th:each="err : ${#fields.errors('')}"
-                                                                th:text="${err}"></li>
-                                                        </ul>
-                                                    </div>
+                                                    <label class="col-form-label" for="street">Street</label>
+                                                    <input class="form-control" id="street" placeholder="street"
+                                                           th:field="*{street}"
+                                                           type="text">
+                                                    <!--                                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('')}">-->
+                                                    <!--                                                        <ul>-->
+                                                    <!--                                                            <li th:each="err : ${#fields.errors('')}"-->
+                                                    <!--                                                                th:text="${err}"></li>-->
+                                                    <!--                                                        </ul>-->
+                                                    <!--                                                    </div>-->
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    <label class="col-form-label" for="city">City</label>
+                                                    <input class="form-control" id="city" placeholder="city"
+                                                           th:field="*{city}"
+                                                           type="text">
+                                                    <!--                                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('')}">-->
+                                                    <!--                                                        <ul>-->
+                                                    <!--                                                            <li th:each="err : ${#fields.errors('')}"-->
+                                                    <!--                                                                th:text="${err}"></li>-->
+                                                    <!--                                                        </ul>-->
+                                                    <!--                                                    </div>-->
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    <label class="col-form-label" for="zip">Zip Code</label>
+                                                    <input class="form-control" id="zip" placeholder="zip code"
+                                                           th:field="*{zipCode}"
+                                                           type="text">
+                                                    <!--                                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('')}">-->
+                                                    <!--                                                        <ul>-->
+                                                    <!--                                                            <li th:each="err : ${#fields.errors('')}"-->
+                                                    <!--                                                                th:text="${err}"></li>-->
+                                                    <!--                                                        </ul>-->
+                                                    <!--                                                    </div>-->
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6">
+                                                <div class="form-group">
+                                                    <label class="col-form-label" for="state">State</label>
+                                                    <input class="form-control" id="state" placeholder="state"
+                                                           th:field="*{state}"
+                                                           type="text">
+                                                    <!--                                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('')}">-->
+                                                    <!--                                                        <ul>-->
+                                                    <!--                                                            <li th:each="err : ${#fields.errors('')}"-->
+                                                    <!--                                                                th:text="${err}"></li>-->
+                                                    <!--                                                        </ul>-->
+                                                    <!--                                                    </div>-->
                                                 </div>
                                             </div>
                                         </div>
@@ -112,7 +160,7 @@
                                         <div class="row">
                                             <div class="col-sm-6 col-md-6 col-lg-12">
                                                 <div class="float-right">
-                                                    <button type="submit" class="btn btn-success">Save</button>
+                                                    <button class="btn btn-success" type="submit">Save</button>
                                                 </div>
                                             </div>
                                         </div>
@@ -157,20 +205,20 @@
 
                                             <tbody>
 
-                                            <tr th:each="'': ${''}">
-                                                <td th:text="${''}"></td>
-                                                <td th:text="${''}"></td>
-                                                <td th:text="${''}"></td>
-                                                <td th:text="${''}"></td>
-                                                <td th:text="${''}"></td>
-                                                <td th:text="${''}"></td>
-                                                <td class="actions">
-                                                    <a href="#">
-                                                        <button type="button" class="btn btn-warning btn-sm">Update
+                                            <tr th:each="customer : ${customers}">
+                                                <td th:text="${customer.firstName + ' ' + customer.lastName}"></td>
+                                                <td th:text="${customer.street}"></td>
+                                                <td th:text="${customer.city}"></td>
+                                                <td th:text="${customer.state}"></td>
+                                                <td th:text="${customer.zipCode}"></td>
+                                                <td th:text="${customer.phoneNumber}"></td>
+                                                <td>
+                                                    <a th:href="@{/user/update/__${customer.id}__}">
+                                                        <button class="btn btn-warning rounded-0" type="button">Update
                                                         </button>
                                                     </a>
-                                                    <a href="#" class="delete-row">
-                                                        <button type="button" class="btn btn-secondary btn-sm">Delete
+                                                    <a th:href="@{/user/delete/__${customer.id}__}">
+                                                        <button class="btn btn-danger rounded-0" type="button">Delete
                                                         </button>
                                                     </a>
                                                 </td>

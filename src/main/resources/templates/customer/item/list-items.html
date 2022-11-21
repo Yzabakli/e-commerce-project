@@ -38,11 +38,11 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr th:each="'' : ${''}"> <!--todo-->
-                                                <td th:text="${''}"></td>
-                                                <td th:text="${''}"></td>
+                                            <tr th:each="item : ${items}">
+                                                <td th:text="${item.description}"></td>
+                                                <td th:text="${item.price}"></td>
                                                 <td>
-                                                    <a th:href="@{''}">
+                                                    <a th:href="@{/item/add/__${item.id}__}">
                                                         <button class="btn btn-success"
                                                                 type="button">
                                                             Add
