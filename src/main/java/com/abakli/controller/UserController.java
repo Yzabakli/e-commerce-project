@@ -79,6 +79,22 @@ public class UserController {
         return "redirect:/user/create";
     }
 
+    @GetMapping("/create-profile")
+    public String createProfile(Model model) {
+
+        model.addAttribute("newCustomer", new UserDTO());
+
+        return "customer/create-profile";
+    }
+
+    @PostMapping("/create-profile")
+    public String createProfile(@ModelAttribute("newCustomer") UserDTO newCustomer) {
+
+        userService.save(newCustomer);
+
+        return "redirect:/login";
+    }
+
     @GetMapping("/edit-profile")
     public String editProfile(Model model) {
 

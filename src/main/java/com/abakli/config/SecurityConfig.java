@@ -26,7 +26,7 @@ public class SecurityConfig {
                 .hasAuthority("Admin")
                 .antMatchers("/customer/**")
                 .hasAuthority("Customer")
-                .antMatchers("/login", "/fragments/**", "/assets/**", "/images/**")
+                .antMatchers("/login", "/fragments/**", "/assets/**", "/images/**", "/user/create-profile")
                 .permitAll()
                 .anyRequest()
                 .authenticated()

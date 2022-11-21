@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="/fragments/head :: head"><title>Edit Profile</title></head>
+
+<body>
+
+<div class="dashboard-main-wrapper">
+
+  <div th:replace="/fragments/header :: header"></div>
+
+  <div th:replace="/fragments/left-sidebar :: left-sidebar"></div>
+
+  <div class="dashboard-wrapper">
+
+    <div class="dashboard-ecommerce">
+
+      <div class="container-fluid dashboard-content">
+
+        <div class="ecommerce-widget">
+
+          <div class="row">
+
+            <div class="col-lg-6 col-md-12">
+
+              <section class="panel panel-transparent">
+                <header class="panel-heading">
+                  <h2 class="panel-title">Edit Profile</h2>
+                </header>
+
+                <div class="panel-body">
+
+                  <!-- ------------------------FORM START----------------------------- -->
+                  <form method="post" th:action="@{/user/create-profile}"
+                        th:object="${newCustomer}">
+                    <div class="row">
+                      <div class="col-sm-6 col-md-6">
+                        <div class="form-group">
+                          <label class="col-form-label" for="firstname">First Name</label>
+                          <input class="form-control" id="firstname" placeholder="first name"
+                                 th:field="*{firstName}"
+                                 type="text">
+                          <!--                                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('')}">-->
+                          <!--                                                        <ul>-->
+                          <!--                                                            <li th:each="err : ${#fields.errors('')}"-->
+                          <!--                                                                th:text="${err}"></li>-->
+                          <!--                                                        </ul>-->
+                          <!--                                                    </div>-->
+                        </div>
+                      </div>
+                      <div class="col-sm-6 col-md-6">
+                        <div class="form-group">
+                          <label class="col-form-label" for="lastname">Last Name</label>
+                          <input class="form-control" id="lastname" placeholder="last name"
+                                 th:field="*{lastName}"
+                                 type="text">
+                          <!--                                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('')}">-->
+                          <!--                                                        <ul>-->
+                          <!--                                                            <li th:each="err : ${#fields.errors('')}"-->
+                          <!--                                                                th:text="${err}"></li>-->
+                          <!--                                                        </ul>-->
+                          <!--                                                    </div>-->
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-sm-6 col-md-6">
+                        <div class="form-group">
+                          <label class="col-form-label" for="phonenumber">Phone Number</label>
+                          <input class="form-control" id="phonenumber"
+                                 placeholder="phone number"
+                                 th:field="*{phoneNumber}" type="tel">
+                          <!--                                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('')}">-->
+                          <!--                                                        <ul>-->
+                          <!--                                                            <li th:each="err : ${#fields.errors('')}"-->
+                          <!--                                                                th:text="${err}"></li>-->
+                          <!--                                                        </ul>-->
+                          <!--                                                    </div>-->
+                        </div>
+                      </div>
+                      <div class="col-sm-6 col-md-6">
+                        <div class="form-group">
+                          <label class="col-form-label" for="password">Password</label>
+                          <input class="form-control" id="password" placeholder="password"
+                                 th:field="*{password}"
+                                 type="password">
+                          <!--                                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('')}">-->
+                          <!--                                                        <ul>-->
+                          <!--                                                            <li th:each="err : ${#fields.errors('')}"-->
+                          <!--                                                                th:text="${err}"></li>-->
+                          <!--                                                        </ul>-->
+                          <!--                                                    </div>-->
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-sm-6 col-md-6">
+                        <div class="form-group">
+                          <label class="col-form-label" for="street">Street</label>
+                          <input class="form-control" id="street" placeholder="street"
+                                 th:field="*{street}"
+                                 type="text">
+                          <!--                                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('')}">-->
+                          <!--                                                        <ul>-->
+                          <!--                                                            <li th:each="err : ${#fields.errors('')}"-->
+                          <!--                                                                th:text="${err}"></li>-->
+                          <!--                                                        </ul>-->
+                          <!--                                                    </div>-->
+                        </div>
+                      </div>
+                      <div class="col-sm-6 col-md-6">
+                        <div class="form-group">
+                          <label class="col-form-label" for="city">City</label>
+                          <input class="form-control" id="city" placeholder="city"
+                                 th:field="*{city}"
+                                 type="text">
+                          <!--                                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('')}">-->
+                          <!--                                                        <ul>-->
+                          <!--                                                            <li th:each="err : ${#fields.errors('')}"-->
+                          <!--                                                                th:text="${err}"></li>-->
+                          <!--                                                        </ul>-->
+                          <!--                                                    </div>-->
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-sm-6 col-md-6">
+                        <div class="form-group">
+                          <label class="col-form-label" for="zip">Zip Code</label>
+                          <input class="form-control" id="zip" placeholder="zip code"
+                                 th:field="*{zipCode}"
+                                 type="text">
+                          <!--                                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('')}">-->
+                          <!--                                                        <ul>-->
+                          <!--                                                            <li th:each="err : ${#fields.errors('')}"-->
+                          <!--                                                                th:text="${err}"></li>-->
+                          <!--                                                        </ul>-->
+                          <!--                                                    </div>-->
+                        </div>
+                      </div>
+                      <div class="col-sm-6 col-md-6">
+                        <div class="form-group">
+                          <label class="col-form-label" for="state">State</label>
+                          <input class="form-control" id="state" placeholder="state"
+                                 th:field="*{state}"
+                                 type="text">
+                          <!--                                                    <div class="invalid-feedback" th:if="${#fields.hasErrors('')}">-->
+                          <!--                                                        <ul>-->
+                          <!--                                                            <li th:each="err : ${#fields.errors('')}"-->
+                          <!--                                                                th:text="${err}"></li>-->
+                          <!--                                                        </ul>-->
+                          <!--                                                    </div>-->
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-sm-6 col-md-6 col-lg-12">
+                        <div class="float-right">
+                          <button class="btn btn-success" type="submit">Save</button>
+                        </div>
+                      </div>
+                    </div>
+
+                  </form>
+                  <!-- ------------------------FORM END----------------------------- -->
+
+                </div>
+
+              </section>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div th:replace="/fragments/footer :: footer"></div>
+
+</div>
+
+<div th:replace="/fragments/javascript :: js"></div>
+
+</body>
+
+</html>

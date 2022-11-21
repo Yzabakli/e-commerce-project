@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" >
 
 <body>
 
@@ -12,7 +13,7 @@
                      height="50"
                      th:src="@{/images/ABAKLI.gif}"/>
             </a>
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <div sec:authorize="hasAnyAuthority('Admin', 'Customer')" class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto navbar-right-top">
                     <li class="nav-item dropdown connection">
                         <a class="nav-link" th:href="@{/welcome}">
@@ -31,7 +32,7 @@
                                  th:src="@{/images/user.png}"/>
                         </a>
 
-                        <div aria-labelledby="navbarDropdownMenuLink2"
+                        <div sec:authorize="hasAnyAuthority('Admin', 'Customer')" aria-labelledby="navbarDropdownMenuLink2"
                              class="dropdown-menu dropdown-menu-right nav-user-dropdown">
 
                             <div class="nav-user-info">

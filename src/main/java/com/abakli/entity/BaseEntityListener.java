@@ -24,6 +24,9 @@ public class BaseEntityListener extends AuditingEntityListener {
             UserPrincipal principal = (UserPrincipal) authentication.getPrincipal();
             baseEntity.setInsertUserId(principal.getId());
             baseEntity.setLastUpdateUserId(principal.getId());
+        }else {
+            baseEntity.setInsertUserId(1L);
+            baseEntity.setLastUpdateUserId(1L);
         }
     }
 
